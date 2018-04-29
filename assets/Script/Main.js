@@ -40,9 +40,8 @@ cc.Class({
     },
 
     start () {
-        this.addNewBlock(0)
-        this.addNewBlock(1)
-        this.addNewBlock(15)
+        this.addNewBlock(2)
+        this.addNewBlock(2)
     },
 
     initPlayLayout () {
@@ -55,13 +54,41 @@ cc.Class({
         this.cellLayout.updateLayout()
     },
 
-    addNewBlock (i) {
-        var node = cc.instantiate(this.block_prefab)
-        node.getComponent('BlockNode').setValue(1024)
-        node.parent = this.blockLayNode
-        node.position = this._cells[i].position
-        this._cells[i].cover = this._blocks.length
-        this._blocks.push(node)
+    getNewBlockValue () {    
+        return Math.random() > 0.68 ? 4 : 2
+    },
+
+    getEmptyCellIndex () {
+        var emptyCell = []
+        for (let key in this._cells) {
+            if (this._cells[key].cover == -1) {
+                emptyCell.push(key)
+            }
+        }
+        var emptyCellIndex = Math.floor(Math.random()*emptyCell.length)
+        return emptyCell[emptyCellIndex]?emptyCell[emptyCellIndex]:-1
+    },
+
+    addNewBlock (value) {
+        var createNode = (value) => {
+            var node = cc.instantiate(this.block_prefab)
+            node.getComponent('BlockNode').setValue(value)
+            return node
+        }
+
+        var bgCellIndex = this.getEmptyCellIndex()
+        if (bgCellIndex < 0) return
+        var newNodeValue = value? value:this.getNewBlockValue()
+        var newNode = createNode(newNodeValue)
+        newNode.parent = this.blockLayNode
+        var bgCell = this._cells[bgCellIndex]
+        newNode.position = bgCell.position
+        bgCell.cover = this._blocks.length
+        this._blocks.push(newNode)
+
+        // 添加新节点的动画
+        newNode.scale = 0
+        newNode.runAction(cc.scaleTo(0.1, 1))
     },
 
     addTouchEvent () {
@@ -147,6 +174,7 @@ cc.Class({
                 }
             }
         }
+        this.addNewBlock()
     }
 
 });
