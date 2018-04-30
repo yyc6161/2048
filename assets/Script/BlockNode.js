@@ -14,14 +14,14 @@ cc.Class({
 
     },
 
-    value: 0,
-
     onLoad () {
-        this.label.string = this.value
+        // this.node.value = 0
+        // this.label.string = 0
     },
 
     setValue (num) {
-        this.value = num
+        this.node.value = num
+        this.label.string = num
         this.node.name = 'block_'+num
         var color_bg = ''
         var color_value = '#F2E9DA'

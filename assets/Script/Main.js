@@ -40,6 +40,7 @@ cc.Class({
     },
 
     start () {
+        cc.director.setDisplayStats(false)
         this.addNewBlock(2)
         this.addNewBlock(2)
     },
@@ -49,7 +50,7 @@ cc.Class({
         while (cellNum--) {
             var node = cc.instantiate(this.block_bg_prefab)
             node.parent = this.cellLayout.node
-            node.cover = -1
+            node.cover = null
         }
         this.cellLayout.updateLayout()
     },
@@ -61,7 +62,7 @@ cc.Class({
     getEmptyCellIndex () {
         var emptyCell = []
         for (let key in this._cells) {
-            if (this._cells[key].cover == -1) {
+            if (this._cells[key].cover == null) {
                 emptyCell.push(key)
             }
         }
@@ -83,7 +84,7 @@ cc.Class({
         newNode.parent = this.blockLayNode
         var bgCell = this._cells[bgCellIndex]
         newNode.position = bgCell.position
-        bgCell.cover = this._blocks.length
+        bgCell.cover = newNode
         this._blocks.push(newNode)
 
         // 添加新节点的动画
@@ -123,10 +124,6 @@ cc.Class({
         this.blockLayNode.on(cc.Node.EventType.TOUCH_END, function (event) {
             var touchLocation = getTouchRelativeLocation(event)
             var orientation = calculateTouchOrientation(startPointVec, touchLocation)
-            // 输入触碰方向，调试用
-            for (var key in MOVE) {
-                if (MOVE[key]==orientation) console.log('orientation => '+key);
-            }
 
             this.adjustBlocksPositon(orientation)
         }, this);
@@ -140,41 +137,88 @@ cc.Class({
             var move = orientation == MOVE.LEFT? -1 : 1 // 数组遍历方向, 1 正向  2 反向
             var line = -1                               // 遍历的行数
             var emptyCellIndex = -1                     // 空节点的下标
+            var lastCellHasBlock = null                 // 上个检测到的数字块的值
             for (let i = move == -1?this.blockMaxNum-1:0; 0 <= i && i < this.blockMaxNum; i += move) {
                 if (line != Math.floor(i / MaxBlockInLine)) {   // 换行，把空节点下标清空
                     line = Math.floor(i / MaxBlockInLine)
                     emptyCellIndex = -1
+                    lastCellHasBlock = -1
                 } 
-                var coverIndex = this._cells[i].cover 
-                if (coverIndex < 0 && emptyCellIndex == -1) {
+                var coverNode = this._cells[i].cover 
+                if (coverNode == null && emptyCellIndex == -1) {
                     emptyCellIndex = i
-                } else if (coverIndex >= 0 && emptyCellIndex >= 0) {
-                    this._blocks[coverIndex].runAction(cc.moveTo(0.1, this._cells[emptyCellIndex].position))
-                    this._cells[emptyCellIndex].cover = coverIndex
-                    this._cells[i].cover = -1
-                    emptyCellIndex += move
+                } else if (coverNode != null) {
+                    if (lastCellHasBlock != -1 && this._cells[lastCellHasBlock].cover.value == coverNode.value) {   // 可以合并相同数字
+                        var lastBlock = this._cells[lastCellHasBlock].cover
+                        coverNode.runAction(cc.sequence(
+                            cc.moveTo(0.1, this._cells[lastCellHasBlock].position),
+                            cc.callFunc((data)=>{
+                                this.mergeTwoBlock(lastBlock, data)
+                            },this,coverNode)
+                        ))
+                        this._cells[i].cover = null
+                        if (emptyCellIndex == -1) emptyCellIndex = i    //   如果前面没有空块，那么空块就是当前被合并的数字块
+                        lastCellHasBlock = -1
+                    } else if (emptyCellIndex >= 0) {   // 把当前数字块移到空位
+                        lastCellHasBlock = emptyCellIndex
+                        coverNode.runAction(cc.moveTo(0.1, this._cells[emptyCellIndex].position))
+                        this._cells[emptyCellIndex].cover = coverNode
+                        this._cells[i].cover = null
+                        emptyCellIndex += move
+                    } else {
+                        lastCellHasBlock = i
+                    }
                 }
             }
         } else if (orientation == MOVE.UP || orientation == MOVE.DOWN) {
             var move = orientation == MOVE.UP? -1 : 1   // 数组遍历方向, 1 正向  2 反向
             var emptyCellIndex = []                     // 各列对应空节点下标的数组
+            var lastCellHasBlock = []                 // 上个检测到的数字块的值
             for (let i = 0; i < MaxBlockInLine; i++) {
                 emptyCellIndex.push(-1)
+                lastCellHasBlock.push(-1)
             }
             for (let i = move == -1?this.blockMaxNum-1:0; 0 <= i && i < this.blockMaxNum; i += move) {
                 var column = i%MaxBlockInLine           // 遍历的列数
-                var coverIndex = this._cells[i].cover 
-                if (coverIndex < 0 && emptyCellIndex[column] == -1) {
+                var coverNode = this._cells[i].cover 
+                if (coverNode == null && emptyCellIndex[column] == -1) {
                     emptyCellIndex[column] = i
-                } else if (coverIndex >= 0 && emptyCellIndex[column] >= 0) {
-                    this._blocks[coverIndex].runAction(cc.moveTo(0.1, this._cells[emptyCellIndex[column]].position))
-                    this._cells[emptyCellIndex[column]].cover = coverIndex
-                    this._cells[i].cover = -1
-                    emptyCellIndex[column] += move * MaxBlockInLine
+                } else if (coverNode != null) {
+                    if (lastCellHasBlock[column] != -1 && this._cells[lastCellHasBlock[column]].cover.value == coverNode.value) {   // 可以同类合并
+                        var lastBlock = this._cells[lastCellHasBlock[column]].cover
+                        coverNode.runAction(cc.sequence(
+                            cc.moveTo(0.1, this._cells[lastCellHasBlock[column]].position),
+                            cc.callFunc((data)=>{
+                                this.mergeTwoBlock(lastBlock, data)
+                            },this,coverNode)
+                        ))
+                        this._cells[i].cover = null
+                        if (emptyCellIndex[column] == -1) emptyCellIndex[column] = i    //   如果前面没有空块，那么空块就是当前被合并的数字块
+                        lastCellHasBlock[column] = -1
+                    } else if (emptyCellIndex[column] >= 0) {       // 可以移到下一空块
+                        lastCellHasBlock[column] = emptyCellIndex[column]
+                        coverNode.runAction(cc.moveTo(0.1, this._cells[emptyCellIndex[column]].position))
+                        this._cells[emptyCellIndex[column]].cover = coverNode
+                        this._cells[i].cover = null
+                        emptyCellIndex[column] += move * MaxBlockInLine
+                    } else {
+                        lastCellHasBlock[column] = i
+                    }
                 }
             }
         }
         this.addNewBlock()
+    },
+
+    mergeTwoBlock (remindBlock, abondonBlock) {
+        if (remindBlock == null || abondonBlock == null) return
+        var abondon = abondonBlock
+        for (let key in this._blocks) {
+            if (this._blocks[key] == abondonBlock) this._blocks.splice(key, 1)
+        }
+        abondon.destroy()
+        var newValue = remindBlock.value * 2
+        remindBlock.getComponent('BlockNode').setValue(newValue)
     }
 
 });
