@@ -1382,7 +1382,17 @@
     "blockLayNode": {
       "__id__": 32
     },
-    "cells": [],
-    "blocks": []
+    "newGameBtn": {
+      "__id__": 9
+    },
+    "scoreLabel": {
+      "__id__": 16
+    },
+    "bestLabel": {
+      "__id__": 23
+    },
+    "_cells": [],
+    "_blocks": [],
+    "blockMaxNum": 16
   }
 ]

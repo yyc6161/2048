@@ -28,6 +28,20 @@ cc.Class({
             type: cc.Node
         },
 
+        newGameBtn: {
+            default: null,       
+            type: cc.Button
+        },
+
+        scoreLabel: {
+            default: null,       
+            type: cc.Label
+        },
+        bestLabel: {
+            default: null,       
+            type: cc.Label
+        },
+
         _cells: [cc.Node],      // 背景格子
         _blocks: [cc.Node],     // 生成的数字块
         blockMaxNum : 16,
@@ -37,6 +51,9 @@ cc.Class({
         this.initPlayLayout()
         this._cells = this.cellLayout.node.children
         this.addTouchEvent()
+        this.score = 0
+
+        this.newGameBtn.node.on('click', function(){ this.reset()}, this)
     },
 
     start () {
@@ -219,6 +236,28 @@ cc.Class({
         abondon.destroy()
         var newValue = remindBlock.value * 2
         remindBlock.getComponent('BlockNode').setValue(newValue)
+        this.updateScore(newValue)
+    },
+
+    updateScore (newScore) {
+        this.score += newScore
+        this.scoreLabel.string = this.score
+        
+        var bestScore = Number(this.bestLabel.string)
+        if (this.score > bestScore) this.bestLabel.string = this.score
+    },
+
+    reset () {
+        this.score = 0
+        this.scoreLabel.string = 0
+        this._blocks.splice(0,this._blocks.length)
+        this.blockLayNode.destroyAllChildren()
+        for (let cell of this._cells) {
+            cell.cover = null
+        }
+        setTimeout(()=>{
+            this.start()
+        }, 1)
     }
 
 });

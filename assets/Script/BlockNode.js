@@ -14,11 +14,6 @@ cc.Class({
 
     },
 
-    onLoad () {
-        // this.node.value = 0
-        // this.label.string = 0
-    },
-
     setValue (num) {
         this.node.value = num
         this.label.string = num
