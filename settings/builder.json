@@ -14,9 +14,9 @@
   "oauthLoginServer": "",
   "optimizeHotUpdate": false,
   "orientation": {
-    "landscapeLeft": true,
-    "landscapeRight": true,
-    "portrait": false,
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
     "upsideDown": false
   },
   "packageName": "org.cocos2d.helloworld",
@@ -26,8 +26,8 @@
     "orientation": "portrait"
   },
   "renderMode": "0",
-  "startScene": "14a31b84-fe5e-414c-b74d-3abd6825fbf1",
-  "title": "hello_world",
+  "startScene": "46482a30-7c98-4ee0-9add-31393316ba38",
+  "title": "2048",
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",

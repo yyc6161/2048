@@ -18,8 +18,8 @@ cc.Class({
         this.node.value = num
         this.label.string = num
         this.node.name = 'block_'+num
-        var color_bg = ''
-        var color_value = '#F2E9DA'
+        let color_bg = ''
+        let color_value = '#F2E9DA'
         if (num <= 4) {
             color_value = '#787065'
         } 
@@ -60,7 +60,7 @@ cc.Class({
             default:
                 color_bg = '#000000'
         }
-        var color = new cc.Color()
+        let color = new cc.Color()
         this.bg.color = color.fromHEX(color_bg)
         this.label.node.color = color.fromHEX(color_value)
     },
