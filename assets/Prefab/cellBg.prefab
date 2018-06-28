@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "blockBg",
+    "_name": "cellBg",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -92,7 +92,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "2e44447c-df3a-4821-ac15-b414ab5a91cb"
     },
     "fileId": "9eZVZG7lNMaJOaxfTSExu4",
     "sync": false

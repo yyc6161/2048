@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "block",
+    "_name": "cell",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -181,16 +181,13 @@
     "_atlas": null
   },
   {
-    "__type__": "1eadcB+iktA45Gbq4JDx2s4",
+    "__type__": "56ea2odxxhJqL3AuWqk0oPd",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "bg": {
-      "__id__": 1
-    },
     "label": {
       "__id__": 3
     }

@@ -742,7 +742,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 220.6,
+      "x": 220.5999999999999,
       "y": 400
     },
     "_skewX": 0,
@@ -1190,7 +1190,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "CellLayout",
+    "_name": "bgCellLayout",
     "_objFlags": 0,
     "_parent": {
       "__id__": 26
@@ -1300,7 +1300,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "BlockLayNode",
+    "_name": "cellLayNode",
     "_objFlags": 0,
     "_parent": {
       "__id__": 26
@@ -1363,23 +1363,23 @@
     "_fitHeight": false
   },
   {
-    "__type__": "f131fO1LhhPzZSuQL9luEO6",
+    "__type__": "96b35dLytRPCrTr9VAN4di5",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 2
     },
     "_enabled": true,
-    "block_prefab": {
+    "cellPrefab": {
       "__uuid__": "fddd6c38-9a3b-47fb-88a6-6f1ee4f9f8f3"
     },
-    "block_bg_prefab": {
+    "cellBgPrefab": {
       "__uuid__": "2e44447c-df3a-4821-ac15-b414ab5a91cb"
     },
-    "cellLayout": {
+    "bgCellLayout": {
       "__id__": 31
     },
-    "blockLayNode": {
+    "cellLayNode": {
       "__id__": 32
     },
     "newGameBtn": {
@@ -1390,9 +1390,6 @@
     },
     "bestLabel": {
       "__id__": 23
-    },
-    "_cells": [],
-    "_blocks": [],
-    "blockMaxNum": 16
+    }
   }
 ]

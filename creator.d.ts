@@ -7,9 +7,9 @@ declare module cc {
 	/** The current version of Cocos2d being used.<br/>
 	Please DO NOT remove this String, it is an important flag for bug tracking.<br/>
 	If you post a bug to forum, please attach this flag. */
-	export let ENGINE_VERSION: string;	
+	export var ENGINE_VERSION: string;	
 	/** The element contains the game canvas */
-	export let container: HTMLDivElement;	
+	export var container: HTMLDivElement;	
 	/**
 	!#en Init Debug setting.
 	!#zh 设置调试模式。
@@ -74,8 +74,8 @@ declare module cc {
 	@example 
 	```js
 	// change the target action speed;
-	let action = cc.scaleTo(0.2, 1, 0.6);
-	let newAction = cc.speed(action, 0.5);
+	var action = cc.scaleTo(0.2, 1, 0.6);
+	var newAction = cc.speed(action, 0.5);
 	``` 
 	*/
 	export function speed(action: ActionInterval, speed: number): Action;	
@@ -89,11 +89,11 @@ declare module cc {
 	```js
 	// example
 	// creates the action with a set boundary
-	let followAction = cc.follow(targetNode, cc.rect(0, 0, screenWidth * 2 - 100, screenHeight));
+	var followAction = cc.follow(targetNode, cc.rect(0, 0, screenWidth * 2 - 100, screenHeight));
 	node.runAction(followAction);
 	
 	// creates the action with no boundary set
-	let followAction = cc.follow(targetNode);
+	var followAction = cc.follow(targetNode);
 	node.runAction(followAction);
 	``` 
 	*/
@@ -113,7 +113,7 @@ declare module cc {
 	@example 
 	```js
 	//create a cc.CardinalSplineTo
-	let action1 = cc.cardinalSplineTo(3, array, 0);
+	var action1 = cc.cardinalSplineTo(3, array, 0);
 	``` 
 	*/
 	export function cardinalSplineTo(duration: number, points: any[], tension: number): ActionInterval;	
@@ -138,7 +138,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let action1 = cc.catmullRomTo(3, array);
+	var action1 = cc.catmullRomTo(3, array);
 	``` 
 	*/
 	export function catmullRomTo(dt: number, points: any[]): ActionInterval;	
@@ -150,7 +150,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let action1 = cc.catmullRomBy(3, array);
+	var action1 = cc.catmullRomBy(3, array);
 	``` 
 	*/
 	export function catmullRomBy(dt: number, points: any[]): ActionInterval;	
@@ -696,7 +696,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let showAction = cc.show();
+	var showAction = cc.show();
 	``` 
 	*/
 	export function show(): ActionInstant;	
@@ -707,7 +707,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let hideAction = cc.hide();
+	var hideAction = cc.hide();
 	``` 
 	*/
 	export function hide(): ActionInstant;	
@@ -718,7 +718,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let toggleVisibilityAction = cc.toggleVisibility();
+	var toggleVisibilityAction = cc.toggleVisibility();
 	``` 
 	*/
 	export function toggleVisibility(): ActionInstant;	
@@ -730,7 +730,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let removeSelfAction = cc.removeSelf();
+	var removeSelfAction = cc.removeSelf();
 	``` 
 	*/
 	export function removeSelf(isNeedCleanUp ?: boolean): ActionInstant;	
@@ -741,7 +741,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let flipXAction = cc.flipX(true);
+	var flipXAction = cc.flipX(true);
 	``` 
 	*/
 	export function flipX(flip: boolean): ActionInstant;	
@@ -752,7 +752,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let flipYAction = cc.flipY(true);
+	var flipYAction = cc.flipY(true);
 	``` 
 	*/
 	export function flipY(flip: boolean): ActionInstant;	
@@ -765,8 +765,8 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let placeAction = cc.place(cc.p(200, 200));
-	let placeAction = cc.place(200, 200);
+	var placeAction = cc.place(cc.p(200, 200));
+	var placeAction = cc.place(200, 200);
 	``` 
 	*/
 	export function place(pos: Vec2|number, y?: number): ActionInstant;	
@@ -781,10 +781,10 @@ declare module cc {
 	```js
 	// example
 	// CallFunc without data
-	let finish = cc.callFunc(this.removeSprite, this);
+	var finish = cc.callFunc(this.removeSprite, this);
 	
 	// CallFunc with data
-	let finish = cc.callFunc(this.removeFromParentAndCleanup, this._grossini,  true);
+	var finish = cc.callFunc(this.removeFromParentAndCleanup, this._grossini,  true);
 	``` 
 	*/
 	export function callFunc(selector: Function, selectorTarget?: any, data?: any): ActionInstant;	
@@ -800,10 +800,10 @@ declare module cc {
 	```js
 	// example
 	// create sequence with actions
-	let seq = cc.sequence(act1, act2);
+	var seq = cc.sequence(act1, act2);
 	
 	// create sequence with array
-	let seq = cc.sequence(actArray);
+	var seq = cc.sequence(actArray);
 	``` 
 	*/
 	export function sequence(actionOrActionArray: FiniteTimeAction|FiniteTimeAction[], ...tempArray: FiniteTimeAction[]): ActionInterval;	
@@ -816,7 +816,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let rep = cc.repeat(cc.sequence(jump2, jump1), 5);
+	var rep = cc.repeat(cc.sequence(jump2, jump1), 5);
 	``` 
 	*/
 	export function repeat(action: FiniteTimeAction, times: number): ActionInterval;	
@@ -828,7 +828,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let repeat = cc.repeatForever(cc.rotateBy(1.0, 360));
+	var repeat = cc.repeatForever(cc.rotateBy(1.0, 360));
 	``` 
 	*/
 	export function repeatForever(action: FiniteTimeAction): ActionInterval;	
@@ -841,7 +841,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.spawn(cc.jumpBy(2, cc.p(300, 0), 50, 4), cc.rotateBy(2, 720));
+	var action = cc.spawn(cc.jumpBy(2, cc.p(300, 0), 50, 4), cc.rotateBy(2, 720));
 	todo:It should be the direct use new
 	``` 
 	*/
@@ -858,7 +858,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let rotateTo = cc.rotateTo(2, 61.0);
+	var rotateTo = cc.rotateTo(2, 61.0);
 	``` 
 	*/
 	export function rotateTo(duration: number, deltaAngleX: number, deltaAngleY?: number): ActionInterval;	
@@ -874,7 +874,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionBy = cc.rotateBy(2, 360);
+	var actionBy = cc.rotateBy(2, 360);
 	``` 
 	*/
 	export function rotateBy(duration: number, deltaAngleX: number, deltaAngleY?: number): ActionInterval;	
@@ -892,7 +892,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionTo = cc.moveBy(2, cc.p(windowSize.width - 40, windowSize.height - 40));
+	var actionTo = cc.moveBy(2, cc.p(windowSize.width - 40, windowSize.height - 40));
 	``` 
 	*/
 	export function moveBy(duration: number, deltaPos: Vec2|number, deltaY?: number): ActionInterval;	
@@ -909,7 +909,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionBy = cc.moveTo(2, cc.p(80, 80));
+	var actionBy = cc.moveTo(2, cc.p(80, 80));
 	``` 
 	*/
 	export function moveTo(duration: number, position: Vec2|number, y?: number): ActionInterval;	
@@ -925,7 +925,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionTo = cc.skewTo(2, 37.2, -37.2);
+	var actionTo = cc.skewTo(2, 37.2, -37.2);
 	``` 
 	*/
 	export function skewTo(t: number, sx: number, sy: number): ActionInterval;	
@@ -941,7 +941,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionBy = cc.skewBy(2, 0, -90);
+	var actionBy = cc.skewBy(2, 0, -90);
 	``` 
 	*/
 	export function skewBy(t: number, sx: number, sy: number): ActionInterval;	
@@ -959,8 +959,8 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionBy = cc.jumpBy(2, cc.p(300, 0), 50, 4);
-	let actionBy = cc.jumpBy(2, 300, 0, 50, 4);
+	var actionBy = cc.jumpBy(2, cc.p(300, 0), 50, 4);
+	var actionBy = cc.jumpBy(2, 300, 0, 50, 4);
 	``` 
 	*/
 	export function jumpBy(duration: number, position: Vec2|number, y?: number, height?: number, jumps?: number): ActionInterval;	
@@ -978,8 +978,8 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let actionTo = cc.jumpTo(2, cc.p(300, 300), 50, 4);
-	let actionTo = cc.jumpTo(2, 300, 300, 50, 4);
+	var actionTo = cc.jumpTo(2, cc.p(300, 300), 50, 4);
+	var actionTo = cc.jumpTo(2, 300, 300, 50, 4);
 	``` 
 	*/
 	export function jumpTo(duration: number, position: Vec2|number, y?: number, height?: number, jumps?: number): ActionInterval;	
@@ -994,8 +994,8 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let bezier = [cc.p(0, windowSize.height / 2), cc.p(300, -windowSize.height / 2), cc.p(300, 100)];
-	let bezierForward = cc.bezierBy(3, bezier);
+	var bezier = [cc.p(0, windowSize.height / 2), cc.p(300, -windowSize.height / 2), cc.p(300, 100)];
+	var bezierForward = cc.bezierBy(3, bezier);
 	``` 
 	*/
 	export function bezierBy(t: number, c: Vec2[]): ActionInterval;	
@@ -1008,8 +1008,8 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let bezier = [cc.p(0, windowSize.height / 2), cc.p(300, -windowSize.height / 2), cc.p(300, 100)];
-	let bezierTo = cc.bezierTo(2, bezier);
+	var bezier = [cc.p(0, windowSize.height / 2), cc.p(300, -windowSize.height / 2), cc.p(300, 100)];
+	var bezierTo = cc.bezierTo(2, bezier);
 	``` 
 	*/
 	export function bezierTo(t: number, c: Vec2[]): ActionInterval;	
@@ -1024,10 +1024,10 @@ declare module cc {
 	```js
 	// example
 	// It scales to 0.5 in both X and Y.
-	let actionTo = cc.scaleTo(2, 0.5);
+	var actionTo = cc.scaleTo(2, 0.5);
 	
 	// It scales to 0.5 in x and 2 in Y
-	let actionTo = cc.scaleTo(2, 0.5, 2);
+	var actionTo = cc.scaleTo(2, 0.5, 2);
 	``` 
 	*/
 	export function scaleTo(duration: number, sx: number, sy?: number): ActionInterval;	
@@ -1043,10 +1043,10 @@ declare module cc {
 	@example 
 	```js
 	// example without sy, it scales by 2 both in X and Y
-	let actionBy = cc.scaleBy(2, 2);
+	var actionBy = cc.scaleBy(2, 2);
 	
 	//example with sy, it scales by 0.25 in X and 4.5 in Y
-	let actionBy2 = cc.scaleBy(2, 0.25, 4.5);
+	var actionBy2 = cc.scaleBy(2, 0.25, 4.5);
 	``` 
 	*/
 	export function scaleBy(duration: number, sx: number, sy?: number|void): ActionInterval;	
@@ -1059,7 +1059,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.blink(2, 10);
+	var action = cc.blink(2, 10);
 	``` 
 	*/
 	export function blink(duration: number, blinks: number): ActionInterval;	
@@ -1074,7 +1074,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.fadeTo(1.0, 0);
+	var action = cc.fadeTo(1.0, 0);
 	``` 
 	*/
 	export function fadeTo(duration: number, opacity: number): ActionInterval;	
@@ -1086,7 +1086,7 @@ declare module cc {
 	@example 
 	```js
 	//example
-	let action = cc.fadeIn(1.0);
+	var action = cc.fadeIn(1.0);
 	``` 
 	*/
 	export function fadeIn(duration: number): ActionInterval;	
@@ -1098,7 +1098,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.fadeOut(1.0);
+	var action = cc.fadeOut(1.0);
 	``` 
 	*/
 	export function fadeOut(d: number): ActionInterval;	
@@ -1113,7 +1113,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.tintTo(2, 255, 0, 255);
+	var action = cc.tintTo(2, 255, 0, 255);
 	``` 
 	*/
 	export function tintTo(duration: number, red: number, green: number, blue: number): ActionInterval;	
@@ -1130,7 +1130,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let action = cc.tintBy(2, -127, -255, -127);
+	var action = cc.tintBy(2, -127, -255, -127);
 	``` 
 	*/
 	export function tintBy(duration: number, deltaRed: number, deltaGreen: number, deltaBlue: number): ActionInterval;	
@@ -1142,7 +1142,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	let delay = cc.delayTime(1);
+	var delay = cc.delayTime(1);
 	``` 
 	*/
 	export function delayTime(d: number): ActionInterval;	
@@ -1154,7 +1154,7 @@ declare module cc {
 	@example 
 	```js
 	// example
-	 let reverse = cc.reverseTime(this);
+	 var reverse = cc.reverseTime(this);
 	``` 
 	*/
 	export function reverseTime(action: FiniteTimeAction): ActionInterval;	
@@ -1167,17 +1167,17 @@ declare module cc {
 	export function targetedAction(target: Node, action: FiniteTimeAction): ActionInterval;	
 	/** !#en cc.view is the shared view object.
 	!#zh cc.view 是全局的视图对象。 */
-	export let view: View;	
+	export var view: View;	
 	/** !#en Director
 	!#zh 导演类。 */
-	export let director: Director;	
+	export var director: Director;	
 	/** !#en cc.winSize is the alias object for the size of the current game window.
 	!#zh cc.winSize 为当前的游戏窗口的大小。 */
-	export let winSize: Size;	
-	export let game: Game;	
+	export var winSize: Size;	
+	export var game: Game;	
 	/** !#en The System event singleton for global usage
 	!#zh 系统事件单例，方便全局使用 */
-	export let systemEvent: SystemEvent;	
+	export var systemEvent: SystemEvent;	
 	/**
 	Finds a node by hierarchy path, the path is case-sensitive.
 	It will traverse the hierarchy by splitting the path using '/' character.
@@ -1259,10 +1259,10 @@ declare module cc {
 	@example 
 	```js
 	// define base class
-	let Node = cc.Class();
+	var Node = cc.Class();
 	
 	// define sub class
-	let Sprite = cc.Class({
+	var Sprite = cc.Class({
 	name: 'Sprite',
 	extends: Node,
 	ctor: function () {
@@ -1299,7 +1299,7 @@ declare module cc {
 	
 	// instantiate
 	
-	let obj = new Sprite();
+	var obj = new Sprite();
 	obj.url = 'sprite.png';
 	obj.load();
 	``` 
@@ -1331,7 +1331,7 @@ declare module cc {
 	```js
 	// JavaScript:
 	
-	let WrapMode = cc.Enum({
+	var WrapMode = cc.Enum({
 	    Repeat: -1,
 	    Clamp: -1
 	});
@@ -1341,14 +1341,14 @@ declare module cc {
 	// Texture.WrapMode[0] == "Repeat"
 	// Texture.WrapMode[1] == "Clamp"
 	
-	let FlagType = cc.Enum({
+	var FlagType = cc.Enum({
 	    Flag1: 1,
 	    Flag2: 2,
 	    Flag3: 4,
 	    Flag4: 8,
 	});
 	
-	let AtlasSizeList = cc.Enum({
+	var AtlasSizeList = cc.Enum({
 	    128: 128,
 	    256: 256,
 	    512: 512,
@@ -1536,13 +1536,13 @@ declare module cc {
 	export function isValid(value: any): boolean;	
 	/** Specify that the input value must be integer in Inspector.
 	Also used to indicates that the elements in array should be type integer. */
-	export let Integer: string;	
+	export var Integer: string;	
 	/** Indicates that the elements in array should be type double. */
-	export let Float: string;	
+	export var Float: string;	
 	/** Indicates that the elements in array should be type boolean. */
-	export let Boolean: string;	
+	export var Boolean: string;	
 	/** Indicates that the elements in array should be type string. */
-	export let String: string;	
+	export var String: string;	
 	/**
 	!#en Deserialize json to cc.Asset
 	!#zh 将 JSON 反序列化为对象实例。
@@ -1564,12 +1564,12 @@ declare module cc {
 	@example 
 	```js
 	// instantiate node from prefab
-	let scene = cc.director.getScene();
-	let node = cc.instantiate(prefabAsset);
+	var scene = cc.director.getScene();
+	var node = cc.instantiate(prefabAsset);
 	node.parent = scene;
 	// clone node
-	let scene = cc.director.getScene();
-	let node = cc.instantiate(targetNode);
+	var scene = cc.director.getScene();
+	var node = cc.instantiate(targetNode);
 	node.parent = scene;
 	``` 
 	*/
@@ -1592,11 +1592,11 @@ declare module cc {
 	```js
 	-----------------------
 	// 1. All channels seperately as parameters
-	let color1 = new cc.Color(255, 255, 255, 255);
+	var color1 = new cc.Color(255, 255, 255, 255);
 	// 2. Convert a hex string to a color
-	let color2 = new cc.Color("#000000");
+	var color2 = new cc.Color("#000000");
 	// 3. An color object as parameter
-	let color3 = new cc.Color({r: 255, g: 255, b: 255, a: 255});
+	var color3 = new cc.Color({r: 255, g: 255, b: 255, a: 255});
 	
 	``` 
 	*/
@@ -1635,7 +1635,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let color = new cc.Color(255, 6, 255)
+	var color = new cc.Color(255, 6, 255)
 	cc.colorToHex(color); // #ff06ff;
 	``` 
 	*/
@@ -1753,8 +1753,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let v1 = cc.v2(20, 20);
-	let v2 = cc.v2(5, 5);
+	var v1 = cc.v2(20, 20);
+	var v2 = cc.v2(5, 5);
 	cc.pProject(v1, v2); // Vec2 {x: 20, y: 20};
 	``` 
 	*/
@@ -1778,8 +1778,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let point1 = cc.v2(20, 20);
-	let point2 = cc.v2(5, 5);
+	var point1 = cc.v2(20, 20);
+	var point2 = cc.v2(5, 5);
 	cc.pDistanceSQ(point1, point2); // 450;
 	``` 
 	*/
@@ -1803,8 +1803,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let v1 = cc.v2(20, 20);
-	let v2 = cc.v2(5, 5);
+	var v1 = cc.v2(20, 20);
+	var v2 = cc.v2(5, 5);
 	cc.pDistance(v1, v2); // 21.213203435596427;
 	``` 
 	*/
@@ -1855,9 +1855,9 @@ declare module cc {
 	
 	@example 
 	```js
-	let v1 = cc.clampf(20, 0, 20); // 20;
-	let v2 = cc.clampf(-1, 0, 20); //  0;
-	let v3 = cc.clampf(10, 0, 20); // 10;
+	var v1 = cc.clampf(20, 0, 20); // 20;
+	var v2 = cc.clampf(-1, 0, 20); //  0;
+	var v3 = cc.clampf(10, 0, 20); // 10;
 	``` 
 	*/
 	export function clampf(value: number, min_inclusive: number, max_inclusive: number): number;	
@@ -1868,9 +1868,9 @@ declare module cc {
 	
 	@example 
 	```js
-	let v1 = cc.clampf(20);  // 1;
-	let v2 = cc.clampf(-1);  // 0;
-	let v3 = cc.clampf(0.5); // 0.5;
+	var v1 = cc.clampf(20);  // 1;
+	var v2 = cc.clampf(-1);  // 0;
+	var v3 = cc.clampf(0.5); // 0.5;
 	``` 
 	*/
 	export function clamp01(value: number): number;	
@@ -1887,11 +1887,11 @@ declare module cc {
 	
 	@example 
 	```js
-	let min_inclusive = cc.v2(0, 0);
-	let max_inclusive = cc.v2(20, 20);
-	let v1 = cc.pClamp(cc.v2(20, 20), min_inclusive, max_inclusive); // Vec2 {x: 20, y: 20};
-	let v2 = cc.pClamp(cc.v2(0, 0), min_inclusive, max_inclusive);   // Vec2 {x: 0, y: 0};
-	let v3 = cc.pClamp(cc.v2(10, 10), min_inclusive, max_inclusive); // Vec2 {x: 10, y: 10};
+	var min_inclusive = cc.v2(0, 0);
+	var max_inclusive = cc.v2(20, 20);
+	var v1 = cc.pClamp(cc.v2(20, 20), min_inclusive, max_inclusive); // Vec2 {x: 20, y: 20};
+	var v2 = cc.pClamp(cc.v2(0, 0), min_inclusive, max_inclusive);   // Vec2 {x: 0, y: 0};
+	var v3 = cc.pClamp(cc.v2(10, 10), min_inclusive, max_inclusive); // Vec2 {x: 10, y: 10};
 	``` 
 	*/
 	export function pClamp(p: Vec2, min_inclusive: Vec2, max_inclusive: Vec2): Vec2;	
@@ -1948,17 +1948,17 @@ declare module cc {
 	判断 2 个向量是否在指定数值的范围之内，如果在则返回 true，反之则返回 false。
 	@param a a
 	@param b b
-	@param letiance letiance
+	@param variance variance
 	
 	@example 
 	```js
-	let a = cc.v2(20, 20);
-	let b = cc.v2(5, 5);
-	let b1 = cc.pFuzzyEqual(a, b, 10); // false;
-	let b2 = cc.pFuzzyEqual(a, b, 18); // true;
+	var a = cc.v2(20, 20);
+	var b = cc.v2(5, 5);
+	var b1 = cc.pFuzzyEqual(a, b, 10); // false;
+	var b2 = cc.pFuzzyEqual(a, b, 18); // true;
 	``` 
 	*/
-	export function pFuzzyEqual(a: Vec2, b: Vec2, letiance: number): boolean;	
+	export function pFuzzyEqual(a: Vec2, b: Vec2, variance: number): boolean;	
 	/**
 	!#en Multiplies a nd b components, a.x*b.x, a.y*b.y.
 	!#zh 计算两个向量的每个分量的乘积， a.x * b.x, a.y * b.y。
@@ -2090,7 +2090,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0 , 0, 10, 0);
+	var a = new cc.Rect(0 , 0, 10, 0);
 	``` 
 	*/
 	export function rect(x?: number, y?: number, w?: number, h?: number): Rect;	
@@ -2102,10 +2102,10 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 0, 10, 10);
-	let b = new cc.Rect(0, 0, 5, 5);
+	var a = new cc.Rect(0, 0, 10, 10);
+	var b = new cc.Rect(0, 0, 5, 5);
 	cc.rectEqualToRect(a, b); // false;
-	let c = new cc.Rect(0, 0, 5, 5);
+	var c = new cc.Rect(0, 0, 5, 5);
 	cc.rectEqualToRect(b, c); // true;
 	``` 
 	*/
@@ -2120,8 +2120,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 0, 20, 20);
-	let b = new cc.Rect(10, 10, 20, 20);
+	var a = new cc.Rect(0, 0, 20, 20);
+	var b = new cc.Rect(10, 10, 20, 20);
 	cc.rectContainsRect(a, b); // true;
 	``` 
 	*/
@@ -2133,7 +2133,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(10, 0, 20, 20);
+	var a = new cc.Rect(10, 0, 20, 20);
 	cc.rectGetMaxX(a); // 30;
 	``` 
 	*/
@@ -2145,7 +2145,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(10, 0, 20, 20);
+	var a = new cc.Rect(10, 0, 20, 20);
 	cc.rectGetMidX(a); // 20;
 	``` 
 	*/
@@ -2157,7 +2157,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(10, 0, 20, 20);
+	var a = new cc.Rect(10, 0, 20, 20);
 	cc.rectGetMinX(a); // 10;
 	``` 
 	*/
@@ -2169,7 +2169,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
+	var a = new cc.Rect(0, 10, 20, 20);
 	cc.rectGetMaxY(a); // 30;
 	``` 
 	*/
@@ -2181,7 +2181,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
+	var a = new cc.Rect(0, 10, 20, 20);
 	cc.rectGetMidY(a); // 20;
 	``` 
 	*/
@@ -2193,7 +2193,7 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
+	var a = new cc.Rect(0, 10, 20, 20);
 	cc.rectGetMinY(a); // 10;
 	``` 
 	*/
@@ -2206,8 +2206,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
-	let b = new cc.Vec2(0, 10, 10, 10);
+	var a = new cc.Rect(0, 10, 20, 20);
+	var b = new cc.Vec2(0, 10, 10, 10);
 	cc.rectContainsPoint(a, b); // true;
 	``` 
 	*/
@@ -2220,8 +2220,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
-	let b = new cc.Rect(0, 10, 10, 10);
+	var a = new cc.Rect(0, 10, 20, 20);
+	var b = new cc.Rect(0, 10, 10, 10);
 	cc.rectIntersectsRect(a, b); // true;
 	``` 
 	*/
@@ -2234,8 +2234,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
-	let b = new cc.Rect(0, 10, 10, 10);
+	var a = new cc.Rect(0, 10, 20, 20);
+	var b = new cc.Rect(0, 10, 10, 10);
 	cc.rectOverlapsRect(a, b); // true;
 	``` 
 	*/
@@ -2248,8 +2248,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
-	let b = new cc.Rect(0, 10, 10, 10);
+	var a = new cc.Rect(0, 10, 20, 20);
+	var b = new cc.Rect(0, 10, 10, 10);
 	cc.rectUnion(a, b); // Rect {x: 0, y: 10, width: 20, height: 20};
 	``` 
 	*/
@@ -2262,8 +2262,8 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.Rect(0, 10, 20, 20);
-	let b = new cc.Rect(0, 10, 10, 10);
+	var a = new cc.Rect(0, 10, 20, 20);
+	var b = new cc.Rect(0, 10, 10, 10);
 	cc.rectIntersection(a, b); // Rect {x: 0, y: 10, width: 10, height: 10};
 	``` 
 	*/
@@ -2280,10 +2280,10 @@ declare module cc {
 	
 	@example 
 	```js
-	let size1 = cc.size();
-	let size2 = cc.size(100,100);
-	let size3 = cc.size(size2);
-	let size4 = cc.size({width: 100, height: 100});
+	var size1 = cc.size();
+	var size2 = cc.size(100,100);
+	var size3 = cc.size(size2);
+	var size4 = cc.size({width: 100, height: 100});
 	
 	``` 
 	*/
@@ -2296,10 +2296,10 @@ declare module cc {
 	
 	@example 
 	```js
-	let a = new cc.size(10, 10);
-	let b = new cc.size(10, 10);
+	var a = new cc.size(10, 10);
+	var b = new cc.size(10, 10);
 	cc.sizeEqualToSize(a, b);// return true;
-	let b = new cc.size(5, 10);
+	var b = new cc.size(5, 10);
 	cc.sizeEqualToSize(a, b);// return false;
 	``` 
 	*/
@@ -2323,10 +2323,10 @@ declare module cc {
 	
 	@example 
 	```js
-	let v1 = cc.v2();
-	let v2 = cc.v2(0, 0);
-	let v3 = cc.v2(v2);
-	let v4 = cc.v2({x: 100, y: 100});
+	var v1 = cc.v2();
+	var v2 = cc.v2(0, 0);
+	var v3 = cc.v2(v2);
+	var v4 = cc.v2({x: 100, y: 100});
 	``` 
 	*/
 	export function v2(x?: number|any, y?: number): Vec2;	
@@ -2338,10 +2338,10 @@ declare module cc {
 	
 	@example 
 	```js
-	let point1 = cc.p();
-	let point2 = cc.p(100, 100);
-	let point3 = cc.p(point2);
-	let point4 = cc.p({x: 100, y: 100});
+	var point1 = cc.p();
+	var point2 = cc.p(100, 100);
+	var point3 = cc.p(point2);
+	var point4 = cc.p({x: 100, y: 100});
 	``` 
 	*/
 	export function p(x?: number|any, y?: number): Vec2;	
@@ -2667,7 +2667,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let clip = cc.AnimationClip.createWithSpriteFrames(spriteFrames, 10);
+		var clip = cc.AnimationClip.createWithSpriteFrames(spriteFrames, 10);
 		``` 
 		*/
 		static createWithSpriteFrames(spriteFrames: [SpriteFrame], sample: number): AnimationClip;	
@@ -2777,29 +2777,29 @@ declare module cc {
 	 - Gravity Mode (Mode A): <br/>
 	 - gravity <br/>
 	 - direction <br/>
-	 - speed +-  letiance <br/>
-	 - tangential acceleration +- letiance<br/>
-	 - radial acceleration +- letiance<br/>
+	 - speed +-  variance <br/>
+	 - tangential acceleration +- variance<br/>
+	 - radial acceleration +- variance<br/>
 	 - Radius Mode (Mode B):      <br/>
-	 - startRadius +- letiance    <br/>
-	 - endRadius +- letiance      <br/>
-	 - rotate +- letiance         <br/>
+	 - startRadius +- variance    <br/>
+	 - endRadius +- variance      <br/>
+	 - rotate +- variance         <br/>
 	 - Properties common to all modes: <br/>
-	 - life +- life letiance      <br/>
-	 - start spin +- letiance     <br/>
-	 - end spin +- letiance       <br/>
-	 - start size +- letiance     <br/>
-	 - end size +- letiance       <br/>
-	 - start color +- letiance    <br/>
-	 - end color +- letiance      <br/>
-	 - life +- letiance           <br/>
+	 - life +- life variance      <br/>
+	 - start spin +- variance     <br/>
+	 - end spin +- variance       <br/>
+	 - start size +- variance     <br/>
+	 - end size +- variance       <br/>
+	 - start color +- variance    <br/>
+	 - end color +- variance      <br/>
+	 - life +- variance           <br/>
 	 - blending function          <br/>
 	 - texture                    <br/>
 	<br/>
 	cocos2d also supports particles generated by Particle Designer (http://particledesigner.71squared.com/).<br/>
 	'Radius Mode' in Particle Designer uses a fixed emit rate of 30 hz. Since that can't be guarateed in cocos2d,  <br/>
 	cocos2d uses a another approach, but the results are almost identical.<br/>
-	cocos2d supports all the letiables used by Particle Designer plus a bit more:  <br/>
+	cocos2d supports all the variables used by Particle Designer plus a bit more:  <br/>
 	 - spinning particles (supported when using ParticleSystem)       <br/>
 	 - tangential acceleration (Gravity mode)                               <br/>
 	 - radial acceleration (Gravity mode)                                   <br/>
@@ -3688,7 +3688,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let action = cc.scaleTo(0.2, 1, 0.6);
+		var action = cc.scaleTo(0.2, 1, 0.6);
 		node.runAction(action);
 		node.runAction(action).repeatForever(); // fail
 		node.runAction(action.repeatForever()); // right
@@ -3732,7 +3732,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let action = cc.scaleTo(0.2, 1, 0.6);
+		var action = cc.scaleTo(0.2, 1, 0.6);
 		node.stopAction(action);
 		``` 
 		*/
@@ -3755,7 +3755,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let action = node.getActionByTag(1);
+		var action = node.getActionByTag(1);
 		``` 
 		*/
 		getActionByTag(tag: number): Action;		
@@ -3773,7 +3773,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let count = node.getNumberOfRunningActions();
+		var count = node.getNumberOfRunningActions();
 		cc.log("Running Action Count: " + count);
 		``` 
 		*/
@@ -3883,7 +3883,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let hasChange = node.isOpacityModifyRGB();
+		var hasChange = node.isOpacityModifyRGB();
 		``` 
 		*/
 		isOpacityModifyRGB(): boolean;		
@@ -3959,7 +3959,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let displayOpacity = node.getDisplayedOpacity();
+		var displayOpacity = node.getDisplayedOpacity();
 		``` 
 		*/
 		getDisplayedOpacity(): number;		
@@ -3974,7 +3974,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let displayColor = node.getDisplayedColor();
+		var displayColor = node.getDisplayedColor();
 		``` 
 		*/
 		getDisplayedColor(): Color;		
@@ -3990,7 +3990,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let affineTransform = node.getNodeToParentTransformAR();
+		var affineTransform = node.getNodeToParentTransformAR();
 		``` 
 		*/
 		getNodeToParentTransformAR(): AffineTransform;		
@@ -4002,7 +4002,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let boundingBox = node.getBoundingBox();
+		var boundingBox = node.getBoundingBox();
 		``` 
 		*/
 		getBoundingBox(): Rect;		
@@ -4016,7 +4016,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newRect = node.getBoundingBoxToWorld();
+		var newRect = node.getBoundingBoxToWorld();
 		``` 
 		*/
 		getBoundingBoxToWorld(): Rect;		
@@ -4028,7 +4028,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let affineTransform = node.getNodeToParentTransform();
+		var affineTransform = node.getNodeToParentTransform();
 		``` 
 		*/
 		getNodeToParentTransform(): AffineTransform;		
@@ -4038,7 +4038,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let affineTransform = node.getNodeToWorldTransform();
+		var affineTransform = node.getNodeToWorldTransform();
 		``` 
 		*/
 		getNodeToWorldTransform(): AffineTransform;		
@@ -4052,7 +4052,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let mat = node.getNodeToWorldTransformAR();
+		var mat = node.getNodeToWorldTransformAR();
 		``` 
 		*/
 		getNodeToWorldTransformAR(): AffineTransform;		
@@ -4066,7 +4066,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let affineTransform = node.getParentToNodeTransform();
+		var affineTransform = node.getParentToNodeTransform();
 		``` 
 		*/
 		getParentToNodeTransform(): AffineTransform;		
@@ -4076,7 +4076,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let affineTransform = node.getWorldToNodeTransform();
+		var affineTransform = node.getWorldToNodeTransform();
 		``` 
 		*/
 		getWorldToNodeTransform(): AffineTransform;		
@@ -4087,7 +4087,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertToNodeSpace(cc.v2(100, 100));
+		var newVec2 = node.convertToNodeSpace(cc.v2(100, 100));
 		``` 
 		*/
 		convertToNodeSpace(worldPoint: Vec2): Vec2;		
@@ -4098,7 +4098,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertToWorldSpace(cc.v2(100, 100));
+		var newVec2 = node.convertToWorldSpace(cc.v2(100, 100));
 		``` 
 		*/
 		convertToWorldSpace(nodePoint: Vec2): Vec2;		
@@ -4113,7 +4113,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertToNodeSpaceAR(cc.v2(100, 100));
+		var newVec2 = node.convertToNodeSpaceAR(cc.v2(100, 100));
 		``` 
 		*/
 		convertToNodeSpaceAR(worldPoint: Vec2): Vec2;		
@@ -4128,7 +4128,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertToWorldSpaceAR(cc.v2(100, 100));
+		var newVec2 = node.convertToWorldSpaceAR(cc.v2(100, 100));
 		``` 
 		*/
 		convertToWorldSpaceAR(nodePoint: Vec2): Vec2;		
@@ -4139,7 +4139,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertTouchToNodeSpace(touch);
+		var newVec2 = node.convertTouchToNodeSpace(touch);
 		``` 
 		*/
 		convertTouchToNodeSpace(touch: Touch): Vec2;		
@@ -4150,7 +4150,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let newVec2 = node.convertTouchToNodeSpaceAR(touch);
+		var newVec2 = node.convertTouchToNodeSpaceAR(touch);
 		``` 
 		*/
 		convertTouchToNodeSpaceAR(touch: Touch): Vec2;		
@@ -4194,7 +4194,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let posX = node.getPositionX();
+		var posX = node.getPositionX();
 		``` 
 		*/
 		getPositionX(): number;		
@@ -4215,7 +4215,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let posY = node.getPositionY();
+		var posY = node.getPositionY();
 		``` 
 		*/
 		getPositionY(): number;		
@@ -4236,7 +4236,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let localZorder = node.getLocalZOrder();
+		var localZorder = node.getLocalZOrder();
 		``` 
 		*/
 		getLocalZOrder(): number;		
@@ -4373,7 +4373,7 @@ declare module cc {
 		@example 
 		```js
 		//register a schedule to scheduler
-		let scheduler = cc.director.getScheduler();
+		var scheduler = cc.director.getScheduler();
 		scheduler.scheduleCallbackForTarget(this, function, interval, repeat, delay, !this._isRunning);
 		
 		``` 
@@ -4539,7 +4539,7 @@ declare module cc {
 		@example 
 		```js
 		//register this object to scheduler
-		let scheduler = cc.director.getScheduler();
+		var scheduler = cc.director.getScheduler();
 		scheduler.scheduleUpdateForTarget(this, priority, !this._isRunning );
 		
 		``` 
@@ -4558,7 +4558,7 @@ declare module cc {
 		@example 
 		```js
 		//unschedule a callback of target
-		let scheduler = cc.director.getScheduler();
+		var scheduler = cc.director.getScheduler();
 		scheduler.unscheduleCallbackForTarget(this, callback);
 		
 		``` 
@@ -4572,7 +4572,7 @@ declare module cc {
 		@example 
 		```js
 		//unschedules the "update" method.
-		let scheduler = cc.director.getScheduler();
+		var scheduler = cc.director.getScheduler();
 		scheduler.unscheduleUpdateForTarget(this);
 		
 		``` 
@@ -4631,7 +4631,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let audioID = cc.audioEngine.play(path, false, 0.5);
+		var audioID = cc.audioEngine.play(path, false, 0.5);
 		``` 
 		*/
 		static play(filePath: string, loop: boolean, volume: number): number;		
@@ -4677,7 +4677,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let volume = cc.audioEngine.getVolume(id);
+		var volume = cc.audioEngine.getVolume(id);
 		``` 
 		*/
 		static getVolume(audioID: number): number;		
@@ -4700,7 +4700,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let time = cc.audioEngine.getCurrentTime(id);
+		var time = cc.audioEngine.getCurrentTime(id);
 		``` 
 		*/
 		static getCurrentTime(audioID: number): number;		
@@ -4711,7 +4711,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let time = cc.audioEngine.getDuration(id);
+		var time = cc.audioEngine.getDuration(id);
 		``` 
 		*/
 		static getDuration(audioID: number): number;		
@@ -4722,7 +4722,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let state = cc.audioEngine.getState(id);
+		var state = cc.audioEngine.getState(id);
 		``` 
 		*/
 		static getState(audioID: number): audioEngine.AudioState;		
@@ -4908,7 +4908,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let layerName = tiledLayer.getLayerName();
+		var layerName = tiledLayer.getLayerName();
 		cc.log(layerName);
 		``` 
 		*/
@@ -4931,7 +4931,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let property = tiledLayer.getProperty("info");
+		var property = tiledLayer.getProperty("info");
 		cc.log(property);
 		``` 
 		*/
@@ -4944,9 +4944,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let pos = tiledLayer.getPositionAt(cc.v2(0, 0));
+		var pos = tiledLayer.getPositionAt(cc.v2(0, 0));
 		cc.log("Pos: " + pos);
-		let pos = tiledLayer.getPositionAt(0, 0);
+		var pos = tiledLayer.getPositionAt(0, 0);
 		cc.log("Pos: " + pos);
 		``` 
 		*/
@@ -4998,7 +4998,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let tileGid = tiledLayer.getTileGIDAt(0, 0);
+		var tileGid = tiledLayer.getTileGIDAt(0, 0);
 		``` 
 		*/
 		getTileGIDAt(pos: Vec2|number, y?: number): number;		
@@ -5021,7 +5021,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let title = tiledLayer.getTileAt(100, 100);
+		var title = tiledLayer.getTileAt(100, 100);
 		cc.log(title);
 		``` 
 		*/
@@ -5060,7 +5060,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let texture = tiledLayer.getTexture();
+		var texture = tiledLayer.getTexture();
 		cc.log("Texture: " + texture);
 		``` 
 		*/
@@ -5093,7 +5093,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let size = tiledLayer.getLayerSize();
+		var size = tiledLayer.getLayerSize();
 		cc.log("layer size: " + size);
 		``` 
 		*/
@@ -5115,7 +5115,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let mapTileSize = tiledLayer.getMapTileSize();
+		var mapTileSize = tiledLayer.getMapTileSize();
 		cc.log("MapTile size: " + mapTileSize);
 		``` 
 		*/
@@ -5137,7 +5137,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let tiles = tiledLayer.getTiles();
+		var tiles = tiledLayer.getTiles();
 		``` 
 		*/
 		getTiles(): any[];		
@@ -5158,7 +5158,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let tileset = tiledLayer.getTileSet();
+		var tileset = tiledLayer.getTileSet();
 		``` 
 		*/
 		getTileSet(): TMXTilesetInfo;		
@@ -5179,7 +5179,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let orientation = tiledLayer.getLayerOrientation();
+		var orientation = tiledLayer.getLayerOrientation();
 		cc.log("Layer Orientation: " + orientation);
 		``` 
 		*/
@@ -5201,7 +5201,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let properties = tiledLayer.getProperties();
+		var properties = tiledLayer.getProperties();
 		cc.log("Properties: " + properties);
 		``` 
 		*/
@@ -5230,7 +5230,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let mapSize = tiledMap.getMapSize();
+		var mapSize = tiledMap.getMapSize();
 		cc.log("Map Size: " + mapSize);
 		``` 
 		*/
@@ -5252,7 +5252,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let tileSize = tiledMap.getTileSize();
+		var tileSize = tiledMap.getTileSize();
 		cc.log("Tile Size: " + tileSize);
 		``` 
 		*/
@@ -5274,7 +5274,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let mapOrientation = tiledMap.getMapOrientation();
+		var mapOrientation = tiledMap.getMapOrientation();
 		cc.log("Map Orientation: " + mapOrientation);
 		``` 
 		*/
@@ -5296,8 +5296,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let objGroups = titledMap.getObjectGroups();
-		for (let i = 0; i < objGroups.length; ++i) {
+		var objGroups = titledMap.getObjectGroups();
+		for (var i = 0; i < objGroups.length; ++i) {
 		    cc.log("obj: " + objGroups[i]);
 		}
 		``` 
@@ -5309,8 +5309,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let properties = titledMap.getProperties();
-		for (let i = 0; i < properties.length; ++i) {
+		var properties = titledMap.getProperties();
+		for (var i = 0; i < properties.length; ++i) {
 		    cc.log("Properties: " + properties[i]);
 		}
 		``` 
@@ -5333,8 +5333,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let layers = titledMap.allLayers();
-		for (let i = 0; i < layers.length; ++i) {
+		var layers = titledMap.allLayers();
+		for (var i = 0; i < layers.length; ++i) {
 		    cc.log("Layers: " + layers[i]);
 		}
 		``` 
@@ -5347,7 +5347,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let layer = titledMap.getLayer("Player");
+		var layer = titledMap.getLayer("Player");
 		cc.log(layer);
 		``` 
 		*/
@@ -5359,7 +5359,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let group = titledMap.getObjectGroup("Players");
+		var group = titledMap.getObjectGroup("Players");
 		cc.log("ObjectGroup: " + group);
 		``` 
 		*/
@@ -5371,7 +5371,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let property = titledMap.getProperty("info");
+		var property = titledMap.getProperty("info");
 		cc.log("Property: " + property);
 		``` 
 		*/
@@ -5383,7 +5383,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let properties = titledMap.getPropertiesForGID(GID);
+		var properties = titledMap.getPropertiesForGID(GID);
 		cc.log("Properties: " + properties);
 		``` 
 		*/
@@ -5401,7 +5401,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let offset = tMXObjectGroup.getPositionOffset();
+		var offset = tMXObjectGroup.getPositionOffset();
 		``` 
 		*/
 		getPositionOffset(): Vec2;		
@@ -5422,7 +5422,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let offset = tMXObjectGroup.getProperties();
+		var offset = tMXObjectGroup.getProperties();
 		``` 
 		*/
 		getProperties(): any;		
@@ -5443,7 +5443,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let groupName = tMXObjectGroup.getGroupName;
+		var groupName = tMXObjectGroup.getGroupName;
 		``` 
 		*/
 		getGroupName(): string;		
@@ -5467,7 +5467,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let object = tMXObjectGroup.getObject("Group");
+		var object = tMXObjectGroup.getObject("Group");
 		``` 
 		*/
 		getObject(objectName: string): any;		
@@ -5477,7 +5477,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let objects = tMXObjectGroup.getObjects();
+		var objects = tMXObjectGroup.getObjects();
 		``` 
 		*/
 		getObjects(): any[];	
@@ -5633,7 +5633,7 @@ declare module cc {
 		@example 
 		```js
 		---------------------------------
-		let sp = new _ccsg.Sprite("a.png");
+		var sp = new _ccsg.Sprite("a.png");
 		this.addChild(sp);
 		cc.pool.putInPool(sp);
 		cc.pool.getFromPool(_ccsg.Sprite, "a.png");
@@ -5806,7 +5806,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -6009,7 +6009,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let animCtrl = this.node.getComponent(cc.Animation);
+		var animCtrl = this.node.getComponent(cc.Animation);
 		animCtrl.play("linear");
 		``` 
 		*/
@@ -6025,7 +6025,7 @@ declare module cc {
 		@example 
 		```js
 		// linear_1 and linear_2 at the same time playing.
-		let animCtrl = this.node.getComponent(cc.Animation);
+		var animCtrl = this.node.getComponent(cc.Animation);
 		animCtrl.playAdditive("linear_1");
 		animCtrl.playAdditive("linear_2");
 		``` 
@@ -6112,8 +6112,8 @@ declare module cc {
 		@example 
 		```js
 		onPlay: function (event) {
-		    let state = event.detail;    // state instanceof cc.AnimationState
-		    let type = event.type;       // type === 'play';
+		    var state = event.detail;    // state instanceof cc.AnimationState
+		    var type = event.type;       // type === 'play';
 		}
 		
 		// register event to all animation
@@ -6466,8 +6466,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprite = node.addComponent(cc.Sprite);
-		let test = node.addComponent("Test");
+		var sprite = node.addComponent(cc.Sprite);
+		var test = node.addComponent("Test");
 		``` 
 		*/
 		addComponent<T extends Component>(type: {new(): T}): T;
@@ -6484,9 +6484,9 @@ declare module cc {
 		@example 
 		```js
 		// get sprite component.
-		let sprite = node.getComponent(cc.Sprite);
+		var sprite = node.getComponent(cc.Sprite);
 		// get custom test calss.
-		let test = node.getComponent("Test");
+		var test = node.getComponent("Test");
 		``` 
 		*/
 		getComponent<T extends Component>(type: {prototype: T}): T;
@@ -6498,8 +6498,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprites = node.getComponents(cc.Sprite);
-		let tests = node.getComponents("Test");
+		var sprites = node.getComponents(cc.Sprite);
+		var tests = node.getComponents("Test");
 		``` 
 		*/
 		getComponents<T extends Component>(type: {prototype: T}): T[];
@@ -6511,8 +6511,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprite = node.getComponentInChildren(cc.Sprite);
-		let Test = node.getComponentInChildren("Test");
+		var sprite = node.getComponentInChildren(cc.Sprite);
+		var Test = node.getComponentInChildren("Test");
 		``` 
 		*/
 		getComponentInChildren<T extends Component>(type: {prototype: T}): T;
@@ -6524,8 +6524,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprites = node.getComponentsInChildren(cc.Sprite);
-		let tests = node.getComponentsInChildren("Test");
+		var sprites = node.getComponentsInChildren(cc.Sprite);
+		var tests = node.getComponentsInChildren("Test");
 		``` 
 		*/
 		getComponentsInChildren<T extends Component>(type: {prototype: T}): T[];
@@ -6545,7 +6545,7 @@ declare module cc {
 		onRestore is called after the user clicks the Reset item in the Inspector's context menu or performs
 		an undo operation on this component.<br/>
 		<br/>
-		If the component contains the "internal state", short for "temporary member letiables which not included<br/>
+		If the component contains the "internal state", short for "temporary member variables which not included<br/>
 		in its CCClass properties", then you may need to implement this function.<br/>
 		<br/>
 		The editor will call the getset accessors of your component to record/restore the component's state<br/>
@@ -6595,7 +6595,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let timeCallback = function (dt) {
+		var timeCallback = function (dt) {
 		  cc.log("time: " + dt);
 		}
 		this.schedule(timeCallback, 1);
@@ -6610,7 +6610,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let timeCallback = function (dt) {
+		var timeCallback = function (dt) {
 		  cc.log("time: " + dt);
 		}
 		this.scheduleOnce(timeCallback, 2);
@@ -7254,7 +7254,7 @@ declare module cc {
 		@example 
 		```js
 		// Scroll to middle position in 0.1 second in x-axis
-		let maxScrollOffset = this.getMaxScrollOffset();
+		var maxScrollOffset = this.getMaxScrollOffset();
 		scrollView.scrollToOffset(cc.p(maxScrollOffset.x / 2, 0), 0.1);
 		``` 
 		*/
@@ -7414,7 +7414,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let insetLeft = sprite.getInsetLeft();
+		var insetLeft = sprite.getInsetLeft();
 		cc.log("Inset Left:" + insetLeft);
 		``` 
 		*/
@@ -7436,7 +7436,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let insetTop = sprite.getInsetTop();
+		var insetTop = sprite.getInsetTop();
 		cc.log("Inset Top:" + insetTop);
 		``` 
 		*/
@@ -7458,7 +7458,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let insetRight = sprite.getInsetRight();
+		var insetRight = sprite.getInsetRight();
 		cc.log("Inset Right:" + insetRight);
 		``` 
 		*/
@@ -7480,7 +7480,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let insetBottom = sprite.getInsetBottom();
+		var insetBottom = sprite.getInsetBottom();
 		cc.log("Inset Bottom:" + insetBottom);
 		``` 
 		*/
@@ -8036,7 +8036,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -8435,12 +8435,12 @@ declare module cc {
 		
 		cc.loader.load(['a.png', 'b.json'], function (errors, results) {
 		    if (errors) {
-		        for (let i = 0; i < errors.length; i++) {
+		        for (var i = 0; i < errors.length; i++) {
 		            cc.log('Error url [' + errors[i] + ']: ' + results.getError(errors[i]));
 		        }
 		    }
-		    let aTex = results.getContent('a.png');
-		    let bJsonObj = results.getContent('b.json');
+		    var aTex = results.getContent('a.png');
+		    var bJsonObj = results.getContent('b.json');
 		});
 		``` 
 		*/
@@ -8494,8 +8494,8 @@ declare module cc {
 		@example 
 		```js
 		// load the SpriteFrames from resources folder
-		let spriteFrames;
-		let urls = ['misc/characters/character_01', 'misc/weapons/weapons_01'];
+		var spriteFrames;
+		var urls = ['misc/characters/character_01', 'misc/weapons/weapons_01'];
 		cc.loader.loadResArray(urls, cc.SpriteFrame, function (err, assets) {
 		    if (err) {
 		        cc.error(err);
@@ -8530,20 +8530,20 @@ declare module cc {
 		        cc.error(err);
 		        return;
 		    }
-		    let texture = assets[0];
-		    let spriteFrame = assets[1];
+		    var texture = assets[0];
+		    var spriteFrame = assets[1];
 		});
 		
 		// load all textures in "resources/imgs/"
 		cc.loader.loadResDir('imgs', cc.Texture2D, function (err, textures) {
-		    let texture1 = textures[0];
-		    let texture2 = textures[1];
+		    var texture1 = textures[0];
+		    var texture2 = textures[1];
 		});
 		
 		// load all JSONs in "resources/data/"
 		cc.loader.loadResDir('data', function (err, objects, urls) {
-		    let data = objects[0];
-		    let url = urls[0];
+		    var data = objects[0];
+		    var url = urls[0];
 		});
 		``` 
 		*/
@@ -8577,13 +8577,13 @@ declare module cc {
 		@example 
 		```js
 		// Release all dependencies of a loaded prefab
-		let deps = cc.loader.getDependsRecursively(prefab);
+		var deps = cc.loader.getDependsRecursively(prefab);
 		cc.loader.release(deps);
 		// Retrieve all dependent textures
-		let deps = cc.loader.getDependsRecursively('prefabs/sample');
-		let textures = [];
-		for (let i = 0; i < deps.length; ++i) {
-		    let item = cc.loader.getRes(deps[i]);
+		var deps = cc.loader.getDependsRecursively('prefabs/sample');
+		var textures = [];
+		for (var i = 0; i < deps.length; ++i) {
+		    var item = cc.loader.getRes(deps[i]);
 		    if (item instanceof cc.Texture2D) {
 		        textures.push(item);
 		    }
@@ -8613,15 +8613,15 @@ declare module cc {
 		// Release a texture which is no longer need
 		cc.loader.release(texture);
 		// Release all dependencies of a loaded prefab
-		let deps = cc.loader.getDependsRecursively('prefabs/sample');
+		var deps = cc.loader.getDependsRecursively('prefabs/sample');
 		cc.loader.release(deps);
 		// If there is no instance of this prefab in the scene, the prefab and its dependencies like textures, sprite frames, etc, will be freed up.
 		// If you have some other nodes share a texture in this prefab, you can skip it in two ways:
 		// 1. Forbid auto release a texture before release
 		cc.loader.setAutoRelease(texture2d, false);
 		// 2. Remove it from the dependencies array
-		let deps = cc.loader.getDependsRecursively('prefabs/sample');
-		let index = deps.indexOf(texture2d._uuid);
+		var deps = cc.loader.getDependsRecursively('prefabs/sample');
+		var index = deps.indexOf(texture2d._uuid);
 		if (index !== -1)
 		    deps.splice(index, 1);
 		cc.loader.release(deps);
@@ -8772,7 +8772,7 @@ declare module cc {
 		@example 
 		```js
 		loadingItems.onProgress = function (completedCount, totalCount, item) {
-		     let progress = (100 * completedCount / totalCount).toFixed(2);
+		     var progress = (100 * completedCount / totalCount).toFixed(2);
 		     cc.log(progress + '%');
 		 }
 		``` 
@@ -8824,16 +8824,16 @@ declare module cc {
 		@example 
 		```js
 		LoadingItems.create(cc.loader, ['a.png', 'b.plist'], function (completedCount, totalCount, item) {
-		     let progress = (100 * completedCount / totalCount).toFixed(2);
+		     var progress = (100 * completedCount / totalCount).toFixed(2);
 		     cc.log(progress + '%');
 		 }, function (errors, items) {
 		     if (errors) {
-		         for (let i = 0; i < errors.length; ++i) {
+		         for (var i = 0; i < errors.length; ++i) {
 		             cc.log('Error url: ' + errors[i] + ', error: ' + items.getError(errors[i]));
 		         }
 		     }
 		     else {
-		         let result_a = items.getContent('a.png');
+		         var result_a = items.getContent('a.png');
 		         // ...
 		     }
 		 })
@@ -8973,7 +8973,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let pipeline = new Pipeline([
+		var pipeline = new Pipeline([
 		     {
 		         id: 'Downloader',
 		         handle: function (item, callback) {},
@@ -9253,7 +9253,7 @@ declare module cc {
 		```js
 		
 		// 1. remove eventManager add Listener;
-		let mouseListener1 = cc.eventManager.addListener({
+		var mouseListener1 = cc.eventManager.addListener({
 		    event: cc.EventListener.MOUSE,
 		    onMouseDown:  function(keyCode, event){ },
 		    onMouseUp: function(keyCode, event){ },
@@ -9264,7 +9264,7 @@ declare module cc {
 		cc.eventManager.removeListener(mouseListener1);
 		
 		// 2. remove eventListener create Listener;
-		let mouseListener2 = cc.EventListener.create({
+		var mouseListener2 = cc.EventListener.create({
 		    event: cc.EventListener.MOUSE,
 		    onMouseDown:  function(keyCode, event){ },
 		    onMouseUp: function(keyCode, event){ },
@@ -9564,7 +9564,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -9981,7 +9981,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -10464,7 +10464,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let img = new Image();
+		var img = new Image();
 		img.src = dataURL;
 		texture.initWithElement(img);
 		texture.handleLoadedTexture();
@@ -10591,7 +10591,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -10668,7 +10668,7 @@ declare module cc {
 		@example 
 		```js
 		------------------
-		let key = cc.textureCache.textureForKey("hello.png");
+		var key = cc.textureCache.textureForKey("hello.png");
 		
 		``` 
 		*/
@@ -10680,7 +10680,7 @@ declare module cc {
 		@example 
 		```js
 		------------------
-		let key = cc.textureCache.getTextureForKey("hello.png");
+		var key = cc.textureCache.getTextureForKey("hello.png");
 		
 		``` 
 		*/
@@ -10692,7 +10692,7 @@ declare module cc {
 		@example 
 		```js
 		---------------
-		let cacheTextureForColor = cc.textureCache.getTextureColors(texture);
+		var cacheTextureForColor = cc.textureCache.getTextureColors(texture);
 		
 		``` 
 		*/
@@ -10819,7 +10819,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let attrs = { key: 0, num: 100 };
+		var attrs = { key: 0, num: 100 };
 		node.attr(attrs);
 		``` 
 		*/
@@ -10831,7 +10831,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let child = node.getChildByTag(1001);
+		var child = node.getChildByTag(1001);
 		``` 
 		*/
 		getChildByTag(aTag: number): Node;		
@@ -10842,7 +10842,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let child = node.getChildByUuid(uuid);
+		var child = node.getChildByUuid(uuid);
 		``` 
 		*/
 		getChildByUuid(uuid: string): Node;		
@@ -10853,7 +10853,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let child = node.getChildByName("Test Node");
+		var child = node.getChildByName("Test Node");
 		``` 
 		*/
 		getChildByName(name: string): Node;		
@@ -10877,7 +10877,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let index = node.getSiblingIndex();
+		var index = node.getSiblingIndex();
 		``` 
 		*/
 		getSiblingIndex(): number;		
@@ -10986,9 +10986,9 @@ declare module cc {
 		@example 
 		```js
 		// get sprite component.
-		let sprite = node.getComponent(cc.Sprite);
+		var sprite = node.getComponent(cc.Sprite);
 		// get custom test calss.
-		let test = node.getComponent("Test");
+		var test = node.getComponent("Test");
 		``` 
 		*/
 		getComponent<T extends Component>(type: {prototype: T}): T;
@@ -11000,8 +11000,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprites = node.getComponents(cc.Sprite);
-		let tests = node.getComponents("Test");
+		var sprites = node.getComponents(cc.Sprite);
+		var tests = node.getComponents("Test");
 		``` 
 		*/
 		getComponents<T extends Component>(type: {prototype: T}): T[];
@@ -11013,8 +11013,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprite = node.getComponentInChildren(cc.Sprite);
-		let Test = node.getComponentInChildren("Test");
+		var sprite = node.getComponentInChildren(cc.Sprite);
+		var Test = node.getComponentInChildren("Test");
 		``` 
 		*/
 		getComponentInChildren<T extends Component>(type: {prototype: T}): T;
@@ -11026,8 +11026,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprites = node.getComponentsInChildren(cc.Sprite);
-		let tests = node.getComponentsInChildren("Test");
+		var sprites = node.getComponentsInChildren(cc.Sprite);
+		var tests = node.getComponentsInChildren("Test");
 		``` 
 		*/
 		getComponentsInChildren<T extends Component>(type: {prototype: T}): T[];
@@ -11039,8 +11039,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let sprite = node.addComponent(cc.Sprite);
-		let test = node.addComponent("Test");
+		var sprite = node.addComponent(cc.Sprite);
+		var test = node.addComponent("Test");
 		``` 
 		*/
 		addComponent<T extends Component>(type: {new(): T}): T;
@@ -11057,7 +11057,7 @@ declare module cc {
 		@example 
 		```js
 		node.removeComponent(cc.Sprite);
-		let Test = require("Test");
+		var Test = require("Test");
 		node.removeComponent(Test);
 		``` 
 		*/
@@ -11116,7 +11116,7 @@ declare module cc {
 		@example 
 		```js
 		// register touchEnd eventListener
-		let touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
+		var touchEnd = node.on(cc.Node.EventType.TOUCH_END, function (event) {
 		    cc.log("this is callback");
 		}, node);
 		// remove touch end event listener
@@ -11467,7 +11467,7 @@ declare module cc {
 		*/
 		autoFullScreen(element: Element, onFullScreenChange: Function): void;	
 	}	
-	/** System letiables */
+	/** System variables */
 	export class sys {		
 		/** English language code */
 		static LANGUAGE_ENGLISH: string;		
@@ -11902,7 +11902,7 @@ declare module cc {
 		/**
 		Function to apply this strategy
 		The return value is {scale: [scaleX, scaleY], viewport: {cc.Rect}},
-		The target view can then apply these value to itself, it's preferred not to modify directly its private letiables
+		The target view can then apply these value to itself, it's preferred not to modify directly its private variables
 		@param view view
 		@param designedResolution designedResolution 
 		*/
@@ -11945,7 +11945,7 @@ declare module cc {
 		/**
 		Function to apply this resolution policy
 		The return value is {scale: [scaleX, scaleY], viewport: {cc.Rect}},
-		The target view can then apply these value to itself, it's preferred not to modify directly its private letiables
+		The target view can then apply these value to itself, it's preferred not to modify directly its private variables
 		@param view The target view
 		@param designedResolution The user defined design resolution 
 		*/
@@ -12098,7 +12098,7 @@ declare module cc {
 		@example 
 		```js
 		---
-		let url = cc.url.raw("textures/myTexture.png");
+		var url = cc.url.raw("textures/myTexture.png");
 		console.log(url);   // "resources/raw/textures/myTexture.png"
 		
 		``` 
@@ -12111,7 +12111,7 @@ declare module cc {
 		@example 
 		```js
 		---
-		let url = cc.url.builtinRaw("textures/myTexture.png");
+		var url = cc.url.builtinRaw("textures/myTexture.png");
 		console.log(url);   // "resources/default-raw/textures/myTexture.png"
 		
 		``` 
@@ -12313,8 +12313,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color();
-		let newColor = color.clone();// Color {r: 0, g: 0, b: 0, a: 255}
+		var color = new cc.Color();
+		var newColor = color.clone();// Color {r: 0, g: 0, b: 0, a: 255}
 		``` 
 		*/
 		clone(): Color;		
@@ -12325,8 +12325,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let color1 = cc.Color.WHITE;
-		let color2 = new cc.Color(255, 255, 255);
+		var color1 = cc.Color.WHITE;
+		var color2 = new cc.Color(255, 255, 255);
 		cc.log(color1.equals(color2)); // true;
 		color2 = cc.Color.RED;
 		cc.log(color2.equals(color1)); // false;
@@ -12344,7 +12344,7 @@ declare module cc {
 		```js
 		// Converts a white color to a black one trough time.
 		update: function (dt) {
-		    let color = this.node.color;
+		    var color = this.node.color;
 		    if (color.equals(cc.Color.BLACK)) {
 		        return;
 		    }
@@ -12361,7 +12361,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.WHITE;
+		var color = cc.Color.WHITE;
 		color.toString(); // "rgba(255, 255, 255, 255)"
 		``` 
 		*/
@@ -12378,7 +12378,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color();
+		var color = new cc.Color();
 		color.setR(255); // Color {r: 255, g: 0, b: 0, a: 255}
 		``` 
 		*/
@@ -12395,7 +12395,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color();
+		var color = new cc.Color();
 		color.setG(255); // Color {r: 0, g: 255, b: 0, a: 255}
 		``` 
 		*/
@@ -12412,7 +12412,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color();
+		var color = new cc.Color();
 		color.setB(255); // Color {r: 0, g: 0, b: 255, a: 255}
 		``` 
 		*/
@@ -12429,7 +12429,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color();
+		var color = new cc.Color();
 		color.setA(0); // Color {r: 0, g: 0, b: 0, a: 0}
 		``` 
 		*/
@@ -12441,7 +12441,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.BLACK;
+		var color = cc.Color.BLACK;
 		color.toCSS();          // "#000";
 		color.toCSS("rgba");    // "rgba(0,0,0,1.00)";
 		color.toCSS("rgb");     // "rgba(0,0,0)";
@@ -12456,7 +12456,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = new cc.Color(1000, 0, 0, 255);
+		var color = new cc.Color(1000, 0, 0, 255);
 		color.clamp();
 		cc.log(color); // (255, 0, 0, 255)
 		``` 
@@ -12469,7 +12469,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.BLACK;
+		var color = cc.Color.BLACK;
 		color.fromHEX("#FFFF33"); // Color {r: 255, g: 255, b: 51, a: 255};
 		``` 
 		*/
@@ -12481,7 +12481,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.BLACK;
+		var color = cc.Color.BLACK;
 		color.toHEX("#rgb");     // "000";
 		color.toHEX("#rrggbb");  // "000000";
 		``` 
@@ -12493,7 +12493,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.YELLOW;
+		var color = cc.Color.YELLOW;
 		color.toRGBValue(); // 16771844;
 		``` 
 		*/
@@ -12507,7 +12507,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.YELLOW;
+		var color = cc.Color.YELLOW;
 		color.fromHSV(0, 0, 1); // Color {r: 255, g: 255, b: 255, a: 255};
 		``` 
 		*/
@@ -12518,7 +12518,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let color = cc.Color.YELLOW;
+		var color = cc.Color.YELLOW;
 		color.toHSV(); // Object {h: 0.1533864541832669, s: 0.9843137254901961, v: 1};
 		``` 
 		*/
@@ -12592,9 +12592,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
-		let b = new cc.Rect(5, 5, 5, 5);
-		let c = new cc.Rect(20, 20, 10, 10);
+		var a = new cc.Rect(0, 0, 10, 10);
+		var b = new cc.Rect(5, 5, 5, 5);
+		var c = new cc.Rect(20, 20, 10, 10);
 		cc.Rect.contain(a, b); //  1;
 		cc.Rect.contain(b, a); // -1;
 		cc.Rect.contain(a, c); //  0;
@@ -12607,7 +12607,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
+		var a = new cc.Rect(0, 0, 10, 10);
 		a.clone();// Rect {x: 0, y: 0, width: 10, height: 10}
 		``` 
 		*/
@@ -12619,8 +12619,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
-		let b = new cc.Rect(0, 0, 10, 10);
+		var a = new cc.Rect(0, 0, 10, 10);
+		var b = new cc.Rect(0, 0, 10, 10);
 		a.equals(b);// true;
 		``` 
 		*/
@@ -12634,11 +12634,11 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
-		let b = new cc.Rect(50, 50, 100, 100);
+		var a = new cc.Rect(0, 0, 10, 10);
+		var b = new cc.Rect(50, 50, 100, 100);
 		update (dt) {
 		   // method 1;
-		   let c = a.lerp(b, dt * 0.1);
+		   var c = a.lerp(b, dt * 0.1);
 		   // method 2;
 		   a.lerp(b, dt * 0.1, c);
 		}
@@ -12651,7 +12651,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
+		var a = new cc.Rect(0, 0, 10, 10);
 		a.toString();// "(0.00, 0.00, 10.00, 10.00)";
 		``` 
 		*/
@@ -12684,8 +12684,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
-		let b = new cc.Rect(0, 0, 20, 20);
+		var a = new cc.Rect(0, 0, 10, 10);
+		var b = new cc.Rect(0, 0, 20, 20);
 		a.intersects(b);// true
 		``` 
 		*/
@@ -12698,8 +12698,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 10, 10);
-		let b = new cc.Vec2(0, 5);
+		var a = new cc.Rect(0, 0, 10, 10);
+		var b = new cc.Vec2(0, 5);
 		a.contains(b);// true
 		``` 
 		*/
@@ -12711,8 +12711,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.Rect(0, 0, 20, 20);
-		let b = new cc.Rect(0, 0, 10, 10);
+		var a = new cc.Rect(0, 0, 20, 20);
+		var b = new cc.Rect(0, 0, 10, 10);
 		a.containsRect(b);// true
 		``` 
 		*/
@@ -12747,7 +12747,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.size(10, 10);
+		var a = new cc.size(10, 10);
 		a.clone();// return Size {width: 0, height: 0};
 		``` 
 		*/
@@ -12759,7 +12759,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.size(10, 10);
+		var a = new cc.size(10, 10);
 		a.equals(new cc.size(10, 10));// return true;
 		``` 
 		*/
@@ -12773,11 +12773,11 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.size(10, 10);
-		let b = new cc.rect(50, 50, 100, 100);
+		var a = new cc.size(10, 10);
+		var b = new cc.rect(50, 50, 100, 100);
 		update (dt) {
 		   // method 1;
-		   let c = a.lerp(b, dt * 0.1);
+		   var c = a.lerp(b, dt * 0.1);
 		   // method 2;
 		   a.lerp(b, dt * 0.1, c);
 		}
@@ -12790,7 +12790,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let a = new cc.size(10, 10);
+		var a = new cc.size(10, 10);
 		a.toString();// return "(10.00, 10.00)";
 		``` 
 		*/
@@ -13056,7 +13056,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.addSelf(cc.v2(5, 5));// return Vec2 {x: 15, y: 15};
 		``` 
 		*/
@@ -13069,9 +13069,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.add(cc.v2(5, 5));      // return Vec2 {x: 15, y: 15};
-		let v1;
+		var v1;
 		v.add(cc.v2(5, 5), v1);  // return Vec2 {x: 15, y: 15};
 		``` 
 		*/
@@ -13083,7 +13083,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.subSelf(cc.v2(5, 5));// return Vec2 {x: 5, y: 5};
 		``` 
 		*/
@@ -13096,9 +13096,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.sub(cc.v2(5, 5));      // return Vec2 {x: 5, y: 5};
-		let v1;
+		var v1;
 		v.sub(cc.v2(5, 5), v1);  // return Vec2 {x: 5, y: 5};
 		``` 
 		*/
@@ -13110,7 +13110,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.mulSelf(5);// return Vec2 {x: 50, y: 50};
 		``` 
 		*/
@@ -13123,9 +13123,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.mul(5);      // return Vec2 {x: 50, y: 50};
-		let v1;
+		var v1;
 		v.mul(5, v1);  // return Vec2 {x: 50, y: 50};
 		``` 
 		*/
@@ -13137,7 +13137,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.scaleSelf(cc.v2(5, 5));// return Vec2 {x: 50, y: 50};
 		``` 
 		*/
@@ -13150,9 +13150,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.scale(cc.v2(5, 5));      // return Vec2 {x: 50, y: 50};
-		let v1;
+		var v1;
 		v.scale(cc.v2(5, 5), v1);  // return Vec2 {x: 50, y: 50};
 		``` 
 		*/
@@ -13164,7 +13164,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.divSelf(5); // return Vec2 {x: 2, y: 2};
 		``` 
 		*/
@@ -13177,9 +13177,9 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.div(5);      // return Vec2 {x: 2, y: 2};
-		let v1;
+		var v1;
 		v.div(5, v1);  // return Vec2 {x: 2, y: 2};
 		``` 
 		*/
@@ -13190,7 +13190,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.negSelf(); // return Vec2 {x: -10, y: -10};
 		``` 
 		*/
@@ -13202,8 +13202,8 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
-		let v1;
+		var v = cc.v2(10, 10);
+		var v1;
 		v.neg(v1);  // return Vec2 {x: -10, y: -10};
 		``` 
 		*/
@@ -13215,7 +13215,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.dot(cc.v2(5, 5)); // return 100;
 		``` 
 		*/
@@ -13227,7 +13227,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.cross(cc.v2(5, 5)); // return 0;
 		``` 
 		*/
@@ -13238,7 +13238,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.mag(); // return 14.142135623730951;
 		``` 
 		*/
@@ -13249,7 +13249,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.magSqr(); // return 200;
 		``` 
 		*/
@@ -13260,7 +13260,7 @@ declare module cc {
 		
 		@example 
 		```js
-		let v = cc.v2(10, 10);
+		var v = cc.v2(10, 10);
 		v.normalizeSelf(); // return Vec2 {x: 0.7071067811865475, y: 0.7071067811865475};
 		``` 
 		*/
@@ -13980,7 +13980,7 @@ declare module cc {
 			@example 
 			```js
 			// Call Function
-			let eventHandler = new cc.Component.EventHandler();
+			var eventHandler = new cc.Component.EventHandler();
 			eventHandler.target = newTarget;
 			eventHandler.component = "MainMenu";
 			eventHandler.handler = "OnClick"
@@ -14499,7 +14499,7 @@ declare module cc {
 			
 			@example 
 			```js
-			let downloader = new Downloader({
+			var downloader = new Downloader({
 			     // This will match all url with `.scene` extension or all url with `scene` type
 			     'scene' : function (url, callback) {}
 			 });
@@ -14535,7 +14535,7 @@ declare module cc {
 			
 			@example 
 			```js
-			let loader = new Loader({
+			var loader = new Loader({
 			   // This will match all url with `.scene` extension or all url with `scene` type
 			   'scene' : function (url, callback) {}
 			});
@@ -14853,7 +14853,7 @@ declare module anysdk {
 	agent manager of plugin
 	!#zh
 	插件管理对象 */
-	export let agentManager: anysdk.AgentManager;	
+	export var agentManager: anysdk.AgentManager;	
 	/** !#en
 	agent manager of plugin
 	!#zh
@@ -16396,7 +16396,7 @@ declare module sp {
 		
 		@example 
 		```js
-		let bone = spine.findBone('head');
+		var bone = spine.findBone('head');
 		cc.log(bone.worldX); // return 0;
 		spine.updateWorldTransform();
 		bone = spine.findBone('head');
@@ -16771,7 +16771,7 @@ declare module cc._decorator {
 	
 	// above is equivalent to (上面的代码相当于):
 	
-	let NewScript = cc.Class({
+	var NewScript = cc.Class({
 	    properties: {
 	        targetNode1: {
 	            default: null,
