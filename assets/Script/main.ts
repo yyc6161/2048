@@ -1,7 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
 import Cell from './cell'
-import {MOVE, adjustCells} from './utils'
+import {adjustCells, calculateTouchOrientation, getTouchLocation, getEmptyBgCellIndex} from './utils'
 
 @ccclass
 export default class Main extends cc.Component {
@@ -27,21 +27,26 @@ export default class Main extends cc.Component {
     @property(cc.Label)
     bestLabel: cc.Label = null;
 
-    _bgCells: Array<{pos: cc.Vec2, cover: cc.Node}> = []     // 背景格子
+    _bgCells: Array<{pos: cc.Vec2, cover: cc.Node}> = []    // 背景格子信息
     _cells: Array<cc.Node> = []    // 生成的数字块
     cellMaxNum = 16
 
     score = 0
 
+    startEvent: Function
+    endEvent: Function
+
     onLoad () {
         this.initPlayLayout()
-        for (let i = 0; i < this.bgCellLayout.node.children.length; i++) {
-            let bgCell = this.bgCellLayout.node.children[i]
-            this._bgCells.push({pos: bgCell.position, cover: null})
-        }
-        this.addTouchEvent()
+        this.addInputEvent()
 
-        this.newGameBtn.node.on('click', function(){ this.reset() }, this)
+        this.newGameBtn.node.on('click', this.reset, this)
+    }
+
+    onDestroy () {
+        this.cellLayNode.off(cc.Node.EventType.TOUCH_START, this.startEvent, this)
+        this.cellLayNode.off(cc.Node.EventType.TOUCH_END, this.endEvent, this)
+        this.newGameBtn.node.off('click', this.reset, this)
     }
 
     start () {
@@ -50,6 +55,9 @@ export default class Main extends cc.Component {
         this.addNewCell(2)
     }
 
+    /**
+     * 初始化背景格子
+     */
     initPlayLayout () {
         let cellNum = this.cellMaxNum
         while (cellNum--) {
@@ -57,37 +65,32 @@ export default class Main extends cc.Component {
             node.parent = this.bgCellLayout.node
         }
         this.bgCellLayout.updateLayout()
-    }
 
-    getNewBlockValue () {    
-        return Math.random() > 0.68 ? 4 : 2
-    }
-
-    getEmptyCellIndex () {
-        let emptyCell = []
-        for (let key in this._bgCells) {
-            if (this._bgCells[key].cover == null) {
-                emptyCell.push(key)
-            }
+        for (let i = 0; i < this.bgCellLayout.node.children.length; i++) {
+            let bgCell = this.bgCellLayout.node.children[i]
+            this._bgCells.push({pos: bgCell.position, cover: null})
         }
-        let emptyCellIndex = Math.floor(Math.random()*emptyCell.length)
-        return emptyCell[emptyCellIndex]? emptyCell[emptyCellIndex]: -1
+    }
+
+    getNewCellValue () {    
+        return Math.random() > 0.68 ? 4 : 2
     }
 
     /**
      * 添加新的数字块
      * @param value 
      */
-    addNewCell (value: number = this.getNewBlockValue()) {
+    addNewCell (value: number = this.getNewCellValue()) {
         console.log('添加新的数字块', value)
         // 获得新数字块位置
-        let bgCellIndex = this.getEmptyCellIndex() 
+        let bgCellIndex = getEmptyBgCellIndex(this._bgCells) 
         if (bgCellIndex < 0) return
 
         // 生成新的数字块
         let cell = cc.instantiate(this.cellPrefab)
         let cellSrc = cell.getComponent(Cell)
 
+        // 配置新数字块参数
         cellSrc.value = value
         cell.parent = this.cellLayNode
         let bgCell = this._bgCells[bgCellIndex]
@@ -100,44 +103,38 @@ export default class Main extends cc.Component {
         cell.runAction(cc.scaleTo(0.1, 1))
     }
 
-    addTouchEvent () {
-
-        let getTouchRelativeLocation = (touchEvent)=>{
-            let location = this.cellLayNode.convertTouchToNodeSpace(touchEvent);
-            return location
-        }
-
-        let calculateTouchOrientation = (startPoint, endPoint)=>{ 
-            let orientation
-            let horizontal = endPoint.x - startPoint.x   
-            let vertical = endPoint.y - startPoint.y
-
-            if (Math.abs(horizontal) > Math.abs(vertical)) {
-                if (horizontal > 0) orientation = MOVE.LEFT
-                else orientation = MOVE.RIGHT
-            } else {
-                if (vertical > 0) orientation = MOVE.UP
-                else orientation = MOVE.DOWN
-            }
-
-            return orientation
-        }
-
+    /**
+     * 添加触控事件
+     */
+    addInputEvent () {
         let startPointVec
-        this.cellLayNode.on(cc.Node.EventType.TOUCH_START,  (event) => {
-            let touchLocation = getTouchRelativeLocation(event)
-            startPointVec = touchLocation
-        }, this);
 
-        this.cellLayNode.on(cc.Node.EventType.TOUCH_END, function (event) {
-            let touchLocation = getTouchRelativeLocation(event)
+        let startEvent = function (event) {
+            let touchLocation = getTouchLocation(this.cellLayNode, event)
+            startPointVec = touchLocation
+        }
+
+        let endEvent = function (event) {
+            let touchLocation = getTouchLocation(this.cellLayNode, event)
             let orientation = calculateTouchOrientation(startPointVec, touchLocation)
 
-            adjustCells(orientation, this)
-            this.addNewCell()
-        }, this);
+            adjustCells(orientation, this._cells, this._bgCells, this.updateScore.bind(this))
+            this.scheduleOnce(()=>{
+                this.addNewCell()
+            }, 0.1)
+        }.bind(this)
+
+        this.startEvent = startEvent
+        this.endEvent = endEvent
+
+        this.cellLayNode.on(cc.Node.EventType.TOUCH_START, startEvent, this);
+        this.cellLayNode.on(cc.Node.EventType.TOUCH_END, endEvent, this);
     }
 
+    /**
+     * 更新分数
+     * @param newScore 新的分数
+     */
     updateScore (newScore) {
         this.score += newScore
         this.scoreLabel.string = this.score.toString()
